@@ -16,7 +16,6 @@ const getters = {
     return state.shops.map(shop => ShopAdapter.adapt(shop));
   },
   filteredShops: (state, getters) => searchedValue => {
-    searchedValue = searchedValue.toLowerCase();
     return getters.lightShops.filter(({ addressName, city }) => addressName.toLowerCase().includes(searchedValue) || city.toLowerCase().includes(searchedValue));
   },
   cities: (state) => {

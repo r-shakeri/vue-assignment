@@ -2,7 +2,7 @@
   <section>
     <input 
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      @input="onInput($event.target.value)"
       placeholder="search" />
   </section>
 </template>
@@ -20,6 +20,11 @@ export default {
   data() {
     return {
     };
+  },
+  methods: {
+    onInput(value) {
+      this.$emit('input', value.trim().toLowerCase())
+    }
   }
 };
 </script>
