@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <Stores  />
+    <JBaseLayout>
+      <JShopsDashboard  />
+    </JBaseLayout>
   </div>
 </template>
 
 <script>
-import Stores from "./components/Stores";
+import JBaseLayout from "./components/JBaseLayout";
+import JShopsDashboard from "./components/shops/JShopsDashboard";
 
 export default {
   name: "App",
   components: {
-    Stores
+    JBaseLayout,
+    JShopsDashboard
   }
 };
 </script>
