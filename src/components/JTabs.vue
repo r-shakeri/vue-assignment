@@ -20,7 +20,8 @@ export default {
   props: {
     tabIndex: {
       type: Number,
-      required: false
+      required: false,
+      default: 0
     },
     items: {
       type: Array,
@@ -31,9 +32,6 @@ export default {
     return {
       activatedTab: 0
     };
-  },
-  created() {
-    
   },
   mounted() {
     this.activeTab(this.tabIndex);

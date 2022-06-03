@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import JSearch from "../../../src/components/JSearch";
 
 describe("JSearch.vue", () => {
-    let wrapper = null;
+    let wrapper = null
 
     beforeEach(() => {
         wrapper = shallowMount(JSearch)
@@ -21,7 +21,7 @@ describe("JSearch.vue", () => {
         const inputElem = wrapper.find("input")
         inputElem.element.value = "  VeGHel "
         inputElem.trigger("input")
-        const inputEvent = wrapper.emitted("input")
-        expect(inputEvent[0]).toEqual(["veghel"])
+        const inputEvents = wrapper.emitted("input")
+        expect(inputEvents[0]).toEqual(["veghel"])
     })
 })

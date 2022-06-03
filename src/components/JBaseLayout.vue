@@ -5,8 +5,6 @@
     <main>
       <slot></slot>
     </main>
-    <footer>
-    </footer>
   </div>
 </template>
 
