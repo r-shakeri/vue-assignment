@@ -11,7 +11,7 @@ const state = () => ({
   citiesColorMap: new Map()
 })
 
-const getters = {
+export const getters = {
   lightShops: (state) => {
     return state.shops.map(shop => ShopAdapter.adapt(shop));
   },
@@ -26,7 +26,7 @@ const getters = {
   }
 }
 
-const mutations = {
+export const mutations = {
   setShops(state, shops) {
     state.shops = shops;
   },
@@ -35,7 +35,7 @@ const mutations = {
   }
 }
 
-const actions = {
+export const actions = {
   getShopsInfo({ commit, dispatch, state }) {
     if (state.shops.length > 0) return;
     ShopsService.getShops()
@@ -43,9 +43,6 @@ const actions = {
       commit("setShops", shops);
       dispatch("makeCitiesColorMap");
     });
-  },
-  adaptShops() {
-
   },
   makeCitiesColorMap({ commit, state }) {
     const newMap = new Map();

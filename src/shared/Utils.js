@@ -1,10 +1,11 @@
 export default class Utils {
-    static generateRandomHexColor() {
-        const maxVal = 0xFFFFFF; // 16777215
-        let randomNumber = Math.random() * maxVal; 
-        randomNumber = Math.floor(randomNumber);
-        randomNumber = randomNumber.toString(16);
-        const randColor = randomNumber.padStart(6, 0);   
-        return `#${randColor.toUpperCase()}`
+    static generateRandomHexColor() {  
+        var hexabet = "0123456789abcdef";
+	    var randColor = "#";
+	    var hexLength = 6;
+	    while(hexLength--){
+	        randColor += hexabet[Math.floor(Math.random()*16)]; 
+        } 
+        return `#${randColor}`
     }
 }

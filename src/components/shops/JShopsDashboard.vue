@@ -5,10 +5,16 @@
       :items="tabs" />
     <section v-show="tabIndex === 0">
       <JSearch v-model="searchedValue" />
-      <JShopsList :list="filteredShops"/>
+      <ul class="stores">
+        <li v-for="shop in filteredShops" :key="shop.id">
+          <JShopItem 
+            :text="shop.addressName"
+            :style="getStylePerCity(shop.cityColor)"/>
+        </li>
+      </ul>
     </section>
     <section v-show="tabIndex === 1">
-      <ul>
+      <ul class="cities">
         <li v-for="city in cities" :key="city">
           <JShopItem :text="city"/>
         </li>
@@ -18,7 +24,6 @@
 </template>
 
 <script>
-import JShopsList from "./JShopsList";
 import JShopItem from "./JShopItem";
 import JSearch from "../JSearch";
 import JTabs from "../JTabs";
@@ -26,7 +31,6 @@ import JTabs from "../JTabs";
 export default {
   name: "JShopsDashboard",
   components: {
-    JShopsList,
     JShopItem,
     JSearch,
     JTabs
@@ -52,6 +56,9 @@ export default {
   methods: {
     getShopsInfo() {
       this.$store.dispatch("shops/getShopsInfo");
+    },
+    getStylePerCity(cityColor) {
+      return { "background-color": cityColor }
     }
   }
 };

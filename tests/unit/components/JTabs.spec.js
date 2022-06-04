@@ -54,7 +54,6 @@ describe("JTabs.vue", () => {
        
         await liElems.at(1).trigger("click")
         expect(liElems.at(0).classes().length).toEqual(0)
-        //expect(liElems.at(0).classes()).not.toContain('active')
         expect(liElems.at(1).classes()).toContain('active')
 
         const updateEvents = wrapper.emitted("update")
@@ -63,4 +62,17 @@ describe("JTabs.vue", () => {
         wrapper.destroy()
     })
 
+    it("Check the tabs related to the items prop", async () => {
+        const items = ["tab1", "tab2"];
+        const wrapper = wrapperFactory({
+            propsData: {
+                items: items
+            },
+        });
+        const liElems = wrapper.findAll("li")
+        expect(liElems.at(0).text()).toMatch(items[0])
+        expect(liElems.at(1).text()).toMatch(items[1])
+
+        wrapper.destroy()
+    })
 })
