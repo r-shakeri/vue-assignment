@@ -17,11 +17,10 @@ describe("JBaseLayout.vue", () => {
     })
 
     it("Check if the component has header element",  () => {
-        expect(wrapper.html()).toContain("<header></header>")
+        expect(wrapper.find("header")).toBeTruthy()
     })
 
     it("Check if the slot works properly",  () => {
-        wrapper.op
         expect(wrapper.html()).toContain("<section>Welcome!</section>")
     })
 })

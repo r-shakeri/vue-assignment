@@ -1,0 +1,36 @@
+@import "./variables.scss";
+
+@mixin media-breakpoint-web() {
+  @media (min-width: #{$breakpoint-lg + 'px'}) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-tablet() {
+  @media (min-width: #{$breakpoint-md + 'px'}) and (max-width: #{$breakpoint-lg - .02 + 'px'}) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-handset() {
+  @media (max-width: #{$breakpoint-md - .02 + 'px'}) {
+    @content;
+  }
+}
+
+@mixin container() {
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+
+    @include media-breakpoint-web() {
+      max-width: 1316px;
+      margin-right: auto;
+      margin-left: auto;
+    };
+    @include media-breakpoint-tablet() {
+      width: auto;
+      margin-right: 24px;
+      margin-left: 24px;
+    };
+}

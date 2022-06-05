@@ -58,11 +58,29 @@ export default {
       this.$store.dispatch("shops/getShopsInfo");
     },
     getStylePerCity(cityColor) {
-      return { "background-color": cityColor }
+      return { "border-left": `40px solid ${cityColor}` }
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+section {
+  padding-top: 70px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    justify-content: space-between;
+
+    li {
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+    }
+  }
+}
 </style>

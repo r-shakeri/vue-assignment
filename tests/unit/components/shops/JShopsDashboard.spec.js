@@ -73,6 +73,6 @@ describe("JSearch.vue", () => {
 
     it("Check if the method works correctly", () => {
         const result = wrapper.vm.getStylePerCity("#FFF333");
-        expect(result).toMatchObject({ "background-color": "#FFF333" })
+        expect(result).toMatchObject({ "border-left": "40px solid #FFF333" })
     })
 })
