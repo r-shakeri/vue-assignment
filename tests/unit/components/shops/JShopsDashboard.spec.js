@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import JShopsDashboard from "../../../../src/components/shops/JShopsDashboard";
 import JTabs from "../../../../src/components/JTabs";
+import JSearch from "../../../../src/components/JSearch";
 import Vuex from 'vuex'
 
 const localVue = createLocalVue()
@@ -10,15 +11,18 @@ describe("JSearch.vue", () => {
     let wrapper = null
     
     const computed = {
-        cities: () => ["City1", "City2"],
-        filteredShops: () => [{ id: 0, addressName: "Store1", city: "City1", cityColor: "#FFFFFF"}]
-    };
-    const getters = {
         cities: () => ["Aalsmeer", "Aalst"],
         filteredShops: () => [
             { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFFFF" },
             { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
         ]
+    };
+    const getters = {
+        cities: jest.fn().mockReturnValue(["Aalsmeer", "Aalst"]),
+        filteredShops: jest.fn().mockReturnValue([
+            { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFFFF" },
+            { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
+        ])
     }
     const actions = {
         getShopsInfo: jest.fn()
@@ -28,7 +32,7 @@ describe("JSearch.vue", () => {
             shops: {
                 namespaced: true,
                 actions,
-                getters
+                //getters
             }
         }
     })
@@ -36,7 +40,7 @@ describe("JSearch.vue", () => {
         wrapper = shallowMount(JShopsDashboard, {
             data() {
                 return {
-                    searchedValue: "",
+                    searchedValue: "Aa",
                     tabIndex: 1,
                     tabs: ["stores", "cities"]
                 }
@@ -56,22 +60,16 @@ describe("JSearch.vue", () => {
     })
 
     it("Check if the JTabs component changes its defult active tab", () => {
-        expect(wrapper.findComponent(JTabs).props.tabIndex).toEqual(1)
+        expect(wrapper.findComponent(JTabs).props().tabIndex).toEqual(1)
     })
 
-    it("Check if the stores list and cities are shown", () => {
-        const stores = wrapper.findAll("ul.stores li")
-        expect(stores.lenght).toEqual(2)
-        expect(stores.at(0).text()).toMatch("Aalsmeer Ophelialaan.")
-
-        const cities = wrapper.findAll("ul.cities li")
-        expect(cities.lenght).toEqual(2)
-        expect(stores.at(1).text()).toMatch("Aalst")
+    it("Check if the searchedValue data works properly to find stores", () => {
+        expect(wrapper.findComponent(JSearch).props().value).toMatch("Aa")
+        // wrapper.setData({
+        //     searchedValue: "b"
+        // })
+        // expect(getters.filteredShops).toBeCalledWith("b")
     })
-
-    // it("Check if the searchedValue data works properly to find stores", () => {
-
-    // })
 
     it("Check if the method works correctly", () => {
         const result = wrapper.vm.getStylePerCity("#FFF333");
