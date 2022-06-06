@@ -1,5 +1,5 @@
-import ShopsService from "../../../src/services/ShopsService"
-import axios from "../../../src/shared/plugins/axios";
+import ShopsService from "../../../../src/shared/services/ShopsService"
+import axios from "../../../../src/shared/plugins/axios";
 
 describe('ShopsService', () => {
   it('getShops API resolve', async () => {
@@ -38,8 +38,6 @@ describe('ShopsService', () => {
     axios.get = jest.fn(() => Promise.reject({ error: { response: { status: 404 } } }))
      ShopsService.getShops().catch((result) => {
         expect(result.error.response.status).toEqual(404)
-        //console.log = jest.fn();
-        //expect(console.log.mock.calls[0][0]).toBe(result);
     });
 
   })

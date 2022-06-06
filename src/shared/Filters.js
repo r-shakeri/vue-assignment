@@ -1,6 +1,8 @@
-import Vue from "vue"
+import Vue from "vue";
 
-Vue.filter("removeStr", (str, value) => {
+export const removeStr = (str, value) => {
     if (!value) return;
     return str.replace(value, "");
-});
+}
+
+Vue.filter("removeStr", removeStr);

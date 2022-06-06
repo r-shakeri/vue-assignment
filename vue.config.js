@@ -1,5 +1,5 @@
 module.exports = {
     devServer: {
-        proxy: 'https://api.jsonstorage.net' 
+        proxy: process.env.VUE_APP_BASE_URL 
     }
 }

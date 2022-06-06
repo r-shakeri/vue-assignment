@@ -29,6 +29,11 @@
       margin-left: auto;
     };
     @include media-breakpoint-tablet() {
+      max-width: 840px;
+      margin-right: auto;
+      margin-left: auto;
+    };
+    @include media-breakpoint-handset() {
       width: auto;
       margin-right: 24px;
       margin-left: 24px;

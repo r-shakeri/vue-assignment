@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import JShopsDashboard from "../../../../src/components/shops/JShopsDashboard";
 import JTabs from "../../../../src/components/JTabs";
 import JSearch from "../../../../src/components/JSearch";
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -17,27 +17,24 @@ describe("JSearch.vue", () => {
             { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
         ]
     };
-    const getters = {
-        cities: jest.fn().mockReturnValue(["Aalsmeer", "Aalst"]),
-        filteredShops: jest.fn().mockReturnValue([
-            { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFFFF" },
-            { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
-        ])
-    }
+    
     const actions = {
         getShopsInfo: jest.fn()
     }
+
     const store = new Vuex.Store({
         modules: {
             shops: {
                 namespaced: true,
                 actions,
-                //getters
             }
         }
     })
     beforeEach(() => {
         wrapper = shallowMount(JShopsDashboard, {
+            localVue,
+            store,
+            computed,
             data() {
                 return {
                     searchedValue: "Aa",
@@ -45,9 +42,7 @@ describe("JSearch.vue", () => {
                     tabs: ["stores", "cities"]
                 }
             },
-            computed,
-            localVue,
-            store
+            
         })
     })
     
@@ -65,10 +60,6 @@ describe("JSearch.vue", () => {
 
     it("Check if the searchedValue data works properly to find stores", () => {
         expect(wrapper.findComponent(JSearch).props().value).toMatch("Aa")
-        // wrapper.setData({
-        //     searchedValue: "b"
-        // })
-        // expect(getters.filteredShops).toBeCalledWith("b")
     })
 
     it("Check if the method works correctly", () => {

@@ -1,23 +1,19 @@
 module.exports = {
     preset: '@vue/cli-plugin-unit-jest',
-    // transformIgnorePatterns: ['<rootDir>/node_modules/'],
-    // moduleFileExtensions: [...defaults.moduleFileExtensions, 'vue']
-    // "collectCoverage": true,
-    // collectCoverageFrom: [
-    //     "src/**/*.{js,vue}",
-    //     "!**/node_modules/**"
-    // ],
-    // coverageReporters: [
-    //     "html",
-    //     "text-summary"
-    // ]
-    // collectCoverageFrom: [
-    //     "src/**/*.{js,vue}",
-    //     "!**/node_modules/**"
-    // ],
-    // coverageReporters: [
-    //     "html",
-    //     "text-summary"
-    // ]  
+    moduleFileExtensions: ["js",'json', "vue"],
+    transform: {
+        "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+        ".*\\.vue$": "<rootDir>/node_modules/vue-jest"
+    },
+    "collectCoverage": true,
+    collectCoverageFrom: [
+        "src/**/*.{js,vue}",
+    ],
+    coveragePathIgnorePatterns: [
+        "App.vue",
+        "main.js",
+        "axios.js",
+        "Shop.js",
+        "ShopAdapter.js"
+    ],
 };
-  

@@ -1,4 +1,4 @@
-import axios from "../shared/plugins/axios";
+import axios from "../plugins/axios";
 
 export class ShopsService {
   getShops() {

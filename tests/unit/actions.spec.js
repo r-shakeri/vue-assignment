@@ -1,5 +1,5 @@
 import { actions } from "../../src/store"
-import ShopsService from "../../src/services/ShopsService"
+import ShopsService from "../../src/shared/services/ShopsService"
 import Utils from "../../src/shared/Utils"
 
 const { getShopsInfo, makeCitiesColorMap } = actions

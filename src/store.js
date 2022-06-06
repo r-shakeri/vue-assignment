@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import ShopsService from "./services/ShopsService";
+import ShopsService from "./shared/services/ShopsService";
 import Utils from "./shared/Utils";
 import ShopAdapter from "./shared/adapters/ShopAdapter";
 
