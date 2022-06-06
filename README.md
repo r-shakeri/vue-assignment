@@ -1,5 +1,3 @@
-# Jumbo Vue technical assignment
-
 Requirements for this assignment:
 
 - Get the data from jsonstorage.net (see details below)
@@ -24,3 +22,11 @@ https://api.jsonstorage.net/v1/json/00000000-0000-0000-0000-000000000000/c4357a1
 - Create a new jsonstorage.net entity and use it as your last searched for database
 - Chop off the prefix `Jumbo` from the addressName
 - Create a new view for stores per city
+
+## To run the project
+
+- npm run serve
+
+## To run the tests
+
+- npm run test:unit
