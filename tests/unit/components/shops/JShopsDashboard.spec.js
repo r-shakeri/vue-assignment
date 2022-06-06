@@ -10,14 +10,20 @@ localVue.use(Vuex)
 describe("JSearch.vue", () => {
     let wrapper = null
     
-    const computed = {
-        cities: () => ["Aalsmeer", "Aalst"],
-        filteredShops: () => [
+    // const computed = {
+    //     cities: () => ["Aalsmeer", "Aalst"],
+    //     filteredShops: () => [
+    //         { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFFFF" },
+    //         { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
+    //     ]
+    // };
+    const getters = {
+        cities: jest.fn().mockReturnValue(["Aalsmeer", "Aalst"]),
+        filteredShops: jest.fn().mockReturnValue([
             { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFFFF" },
             { id: "zkIKYx4XXxcAAAFI7CMYwKxK", addressName: "Aalst Aalst-Waalre", city: "Aalst", cityColor: "#FFF333" }
-        ]
-    };
-    
+        ])
+    }
     const actions = {
         getShopsInfo: jest.fn()
     }
@@ -27,6 +33,7 @@ describe("JSearch.vue", () => {
             shops: {
                 namespaced: true,
                 actions,
+                getters
             }
         }
     })
@@ -34,7 +41,8 @@ describe("JSearch.vue", () => {
         wrapper = shallowMount(JShopsDashboard, {
             localVue,
             store,
-            computed,
+            //mocks: { $store: mockStore },
+            //computed,
             data() {
                 return {
                     searchedValue: "Aa",
@@ -60,6 +68,10 @@ describe("JSearch.vue", () => {
 
     it("Check if the searchedValue data works properly to find stores", () => {
         expect(wrapper.findComponent(JSearch).props().value).toMatch("Aa")
+        wrapper.setData({
+            searchedValue: "Waalre"
+        })
+        expect(wrapper.findAll("ul.stores li").at(0).text()).toContain("Waalre")
     })
 
     it("Check if the method works correctly", () => {
