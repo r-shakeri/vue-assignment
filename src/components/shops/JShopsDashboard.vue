@@ -3,7 +3,8 @@
     <JTabs 
       v-model="tabIndex"
       :items="tabs" />
-    <section v-show="tabIndex === 0">
+    <JLoading :show="showLoading"/>
+    <section v-show="!showLoading && tabIndex === 0">
       <JSearch v-model="searchedValue" />
       <ul class="stores">
         <li v-for="shop in filteredShops" :key="shop.id">
@@ -13,7 +14,7 @@
         </li>
       </ul>
     </section>
-    <section v-show="tabIndex === 1">
+    <section v-show="!showLoading && tabIndex === 1">
       <ul class="cities">
         <li v-for="city in cities" :key="city">
           <JShopItem :text="city"/>
@@ -27,19 +28,22 @@
 import JShopItem from "./JShopItem";
 import JSearch from "../JSearch";
 import JTabs from "../JTabs";
+import JLoading from "../JLoading";
 
 export default {
   name: "JShopsDashboard",
   components: {
     JShopItem,
     JSearch,
-    JTabs
+    JTabs,
+    JLoading
   },
   data() {
     return {
       searchedValue: "",
       tabIndex: 0,
-      tabs: ["stores", "cities"]
+      tabs: ["stores", "cities"],
+      showLoading: false
     };
   },
   created() {
@@ -55,7 +59,9 @@ export default {
   },
   methods: {
     getShopsInfo() {
-      this.$store.dispatch("shops/getShopsInfo");
+      this.showLoading = true;
+      this.$store.dispatch("shops/getShopsInfo")
+      .then(() => this.showLoading = false);
     },
     getStylePerCity(cityColor) {
       return { "border-left": `40px solid ${cityColor}` }

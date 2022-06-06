@@ -37,8 +37,10 @@ export const mutations = {
 
 export const actions = {
   getShopsInfo({ commit, dispatch, state }) {
-    if (state.shops.length > 0) return;
-    ShopsService.getShops()
+    if (state.shops.length > 0) {
+      return new Promise(resolve => resolve())
+    }
+    return ShopsService.getShops()
     .then(shops => {
       commit("setShops", shops);
       dispatch("makeCitiesColorMap");
