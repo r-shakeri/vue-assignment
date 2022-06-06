@@ -7,12 +7,10 @@
 </template>
 
 <script>
+import TestImport from "../../../TestImport";
+
 export default {
   name: "JShopItem",
-  data() {
-    return {
-    };
-  },
   props: {
     text: {
         type: String,

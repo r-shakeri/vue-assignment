@@ -44,21 +44,6 @@ describe("JSearch.vue", () => {
         wrapper.destroy()
     })
 
-    // it("Check if the JLoading component is showing", () => {
-    //     const setData = {
-    //         searchedValue: ""
-    //     }
-    //     const getters = {
-    //         filteredShops: () => () => {}
-    //     }
-    //     const actions = {
-    //         getShopsInfo: jest.fn()
-    //     }
-    //     const wrapper = wrapperFactory({ setData, getters, actions });
-    //     expect(wrapper.findComponent(JLoading).props().show).resolves.toEqual("false")
-    //     wrapper.destroy()
-    // })
-
     it("Check if the JTabs component changes its defult active tab", () => {
         const setData = {
             tabIndex: 1

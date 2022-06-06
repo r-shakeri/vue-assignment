@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import TestImport from "../../TestImport";
 
 export default {
   name: "JLoading",

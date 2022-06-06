@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import TestImport from "../../TestImport";
 
 export default {
   name: "JSearch",
@@ -22,10 +23,6 @@ export default {
       type: String,
       required: false
     }
-  },
-  data() {
-    return {
-    };
   },
   methods: {
     onInput(value) {

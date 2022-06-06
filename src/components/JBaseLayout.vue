@@ -21,13 +21,10 @@
 </template>
 
 <script>
+import TestImport from "../../TestImport";
 
 export default {
-  name: "JBaseLayout",
-  data() {
-    return {
-    };
-  }
+  name: "JBaseLayout"
 };
 </script>
 
