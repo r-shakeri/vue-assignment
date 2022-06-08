@@ -1,10 +1,9 @@
 import Shop from "../models/Shop";
-import Store from "../../store";
-import Vue from 'vue'
+import Utils from "../Utils";
 
 class ShopAdapter {
-    adapt({ uuid, addressName, city }) {
-        return new Shop(uuid, Vue.filter('removeStr')(addressName, "Jumbo "), city, Store.getters["shops/cityColor"](city));
+    adapt({ uuid, addressName, city }, cityColor) {
+        return new Shop(uuid, Utils.removeFirstValueFrom("Jumbo ", addressName), city, cityColor);
     }
 }
 

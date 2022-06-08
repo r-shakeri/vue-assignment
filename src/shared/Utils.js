@@ -9,4 +9,8 @@ export default class Utils {
         
         return randColor;
     }
+
+    static removeFirstValueFrom(value, str) {
+        return str.replace(value, "");        
+    }
 }

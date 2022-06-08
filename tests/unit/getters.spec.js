@@ -34,7 +34,10 @@ describe("getters", () => {
     }
     const adaptedShopsArray = { id: "gmcKYx4X5HEAAAFIdhIYwKxK", addressName: "Aalsmeer Ophelialaan.", city: "Aalsmeer", cityColor: "#FFFF33" }
     ShopAdapter.adapt = jest.fn(() => { return adaptedShopsArray })
-    const result = lightShops(state)
+    const getters = {
+      cityColor: () => () => "#FFFF33"
+    }
+    const result = lightShops(state, getters)
 
     expect(result.at(0)).toMatchObject(adaptedShopsArray)
   })

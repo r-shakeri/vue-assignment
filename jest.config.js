@@ -13,7 +13,6 @@ module.exports = {
         "App.vue",
         "main.js",
         "axios.js",
-        "Shop.js",
-        "ShopAdapter.js"
+        "Shop.js"
     ],
 };

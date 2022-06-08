@@ -12,8 +12,8 @@ const state = () => ({
 })
 
 export const getters = {
-  lightShops: (state) => {
-    return state.shops.map(shop => ShopAdapter.adapt(shop));
+  lightShops: (state, getters) => {
+    return state.shops.map(shop => ShopAdapter.adapt(shop, getters.cityColor(shop.city)));
   },
   filteredShops: (state, getters) => searchedValue => {
     return getters.lightShops.filter(({ addressName, city }) => addressName.toLowerCase().includes(searchedValue) || city.toLowerCase().includes(searchedValue));
